@@ -26,4 +26,5 @@ public class Employee {
         this.surname = surname;
         this.position = position;
     }
+
 }
