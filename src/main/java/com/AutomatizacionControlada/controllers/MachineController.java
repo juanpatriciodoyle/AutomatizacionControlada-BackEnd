@@ -13,7 +13,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Machine")
+@RequestMapping("/machine")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
 public class MachineController {
 

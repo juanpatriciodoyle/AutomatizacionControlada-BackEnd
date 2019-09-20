@@ -13,7 +13,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/TechnicalService")
+@RequestMapping("/technicalService")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
 public class TechnicalServiceController {
 
