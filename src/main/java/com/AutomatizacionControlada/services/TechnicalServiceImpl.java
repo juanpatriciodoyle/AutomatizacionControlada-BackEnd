@@ -45,6 +45,7 @@ public class TechnicalServiceImpl implements TechnicalServiceService{
         return technicalServiceRepository.findById(id).map(
                 technicalService -> {
                     technicalService.setEmployee(newTechnicalService.getEmployee());
+                    technicalService.setClient(newTechnicalService.getClient());
                     technicalService.setDescription(newTechnicalService.getDescription());
                     technicalService.setAdmissionDate(newTechnicalService.getAdmissionDate());
                     technicalService.setEgressDate(newTechnicalService.getEgressDate());

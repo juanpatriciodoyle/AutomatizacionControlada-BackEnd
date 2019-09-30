@@ -20,6 +20,7 @@ public class Client {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Machine> machineList;
 
+
     private String name;
     private String surname;
     private String mail;

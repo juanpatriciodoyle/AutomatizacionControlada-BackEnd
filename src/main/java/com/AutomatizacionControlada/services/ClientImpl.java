@@ -1,8 +1,8 @@
 package com.AutomatizacionControlada.services;
 
+import com.AutomatizacionControlada.models.Client;
 import com.AutomatizacionControlada.repository.ClientRepository;
 import com.AutomatizacionControlada.messages.EntityNotFoundMsg;
-import com.AutomatizacionControlada.models.Client;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

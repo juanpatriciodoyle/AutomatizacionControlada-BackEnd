@@ -16,16 +16,12 @@ public class Machine {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private TechnicalService technicalService;
-
     private String internalCode;
     private String brand;
     private String model;
     private Boolean boughtHere;
 
-    public Machine(TechnicalService technicalService, String internalCode, String brand, String model, Boolean boughtHere) {
-        this.technicalService = technicalService;
+    public Machine(String internalCode, String brand, String model, Boolean boughtHere) {
         this.internalCode = internalCode;
         this.brand = brand;
         this.model = model;

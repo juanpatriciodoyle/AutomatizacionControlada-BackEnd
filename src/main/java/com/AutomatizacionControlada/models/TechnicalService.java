@@ -18,8 +18,10 @@ public class TechnicalService {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     private Employee employee;
+    @OneToOne()
+    private Client client;
 
     private String description;
     private Date admissionDate;
@@ -29,7 +31,8 @@ public class TechnicalService {
     private Boolean delivered;
     private Enum<Status> status;
 
-    public TechnicalService(Employee employee, String description, Date admissionDate, Date egressDate, Double price, String paymentMethod, Boolean delivered, Enum<Status> status) {
+    public TechnicalService(Employee employee, Client client, String description, Date admissionDate, Date egressDate, Double price, String paymentMethod, Boolean delivered, Enum<Status> status) {
+        this.client = client;
         this.employee = employee;
         this.description = description;
         this.admissionDate = admissionDate;
