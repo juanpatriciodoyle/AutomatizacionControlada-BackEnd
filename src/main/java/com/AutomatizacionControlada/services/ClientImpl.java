@@ -54,4 +54,5 @@ public class ClientImpl implements ClientService{
                 }
         ).orElseThrow(EntityNotFoundMsg::new);
     }
+
 }

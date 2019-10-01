@@ -18,7 +18,7 @@ public class TechnicalService {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Employee employee;
 
     private String description;
@@ -27,9 +27,9 @@ public class TechnicalService {
     private Double price;
     private String paymentMethod;
     private Boolean delivered;
-    private Enum<Status> status;
+    private Status status;
 
-    public TechnicalService(Employee employee, String description, Date admissionDate, Date egressDate, Double price, String paymentMethod, Boolean delivered, Enum<Status> status) {
+    public TechnicalService(Employee employee, String description, Date admissionDate, Date egressDate, Double price, String paymentMethod, Boolean delivered, Status status) {
         this.employee = employee;
         this.description = description;
         this.admissionDate = admissionDate;

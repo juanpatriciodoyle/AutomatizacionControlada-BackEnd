@@ -15,8 +15,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -33,6 +32,7 @@ public class AutomatizacionControladaTest {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
+
 
 
 	@Test
@@ -59,6 +59,31 @@ public class AutomatizacionControladaTest {
 		employeeRepository.deleteAll();
 	}
 
+	@Test
+	public void sortNumbers(){
+//		int[] numbers = {2,3,1,4};
+		List<String> numbers = new ArrayList<>();
+		numbers.add("B");
+		numbers.add("C");
+		numbers.add("A");
+		numbers.add("D");
+
+		Scanner sc = new Scanner(System.in);
+
+		for (String p: numbers) {
+			System.out.println(p);
+		}
+		System.out.println("Choose a person to be your friend by writting down the name");
+		String letter_choosen = sc.nextLine();
+
+
+		boolean conteins = numbers.contains(letter_choosen);
+
+		System.out.println(conteins);
+
+//		makefriends()
+//		removefriends()
+//		getDirectFriends()
+//		getIndirectFriends()
+	}
 }
-
-
