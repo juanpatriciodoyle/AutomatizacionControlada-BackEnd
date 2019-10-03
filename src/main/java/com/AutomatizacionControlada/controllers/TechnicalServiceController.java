@@ -28,7 +28,6 @@ public class TechnicalServiceController {
 
     @GetMapping("/{id}")
     public ResponseEntity<TechnicalService> getById(@PathVariable Long id){
-
         TechnicalService technicalService = technicalServiceService.getById(id);
         return ResponseEntity.ok(technicalService);
 
@@ -36,7 +35,6 @@ public class TechnicalServiceController {
 
     @GetMapping
     public ResponseEntity<List<TechnicalService>> getAll(){
-
         List<TechnicalService> technicalServices = technicalServiceService.getAll();
         return ResponseEntity.ok(technicalServices);
 
@@ -44,7 +42,7 @@ public class TechnicalServiceController {
 
     @PostMapping
     public ResponseEntity<TechnicalService> save(@RequestBody @Valid TechnicalService technicalService){
-
+// Todo Como hacer para que me agarre bien el technical sin el cliente, queire crear una instancia de cliente D:
         TechnicalService savedTechnicalService = technicalServiceService.save(technicalService);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
@@ -55,7 +53,6 @@ public class TechnicalServiceController {
 
     @PutMapping("/{id}")
     public ResponseEntity<TechnicalService> update(@PathVariable Long id, @RequestBody TechnicalService technicalService){
-
         TechnicalService updatedTechnicalService = technicalServiceService.update(id,technicalService);
         return ResponseEntity.ok(updatedTechnicalService);
     }

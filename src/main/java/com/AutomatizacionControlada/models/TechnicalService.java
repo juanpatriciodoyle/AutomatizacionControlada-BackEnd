@@ -28,10 +28,9 @@ public class TechnicalService {
     private Date egressDate;
     private Double price;
     private String paymentMethod;
-    private Boolean delivered;
     private Enum<Status> status;
 
-    public TechnicalService(Employee employee, Client client, String description, Date admissionDate, Date egressDate, Double price, String paymentMethod, Boolean delivered, Enum<Status> status) {
+    public TechnicalService(Employee employee, Client client, String description, Date admissionDate, Date egressDate, Double price, String paymentMethod, Enum<Status> status) {
         this.client = client;
         this.employee = employee;
         this.description = description;
@@ -39,7 +38,6 @@ public class TechnicalService {
         this.egressDate = egressDate;
         this.price = price;
         this.paymentMethod = paymentMethod;
-        this.delivered = delivered;
         this.status = status;
     }
 }

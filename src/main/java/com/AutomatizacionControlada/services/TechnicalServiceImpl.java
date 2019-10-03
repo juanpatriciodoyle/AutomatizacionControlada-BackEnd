@@ -51,7 +51,6 @@ public class TechnicalServiceImpl implements TechnicalServiceService{
                     technicalService.setEgressDate(newTechnicalService.getEgressDate());
                     technicalService.setPrice(newTechnicalService.getPrice());
                     technicalService.setPaymentMethod(newTechnicalService.getPaymentMethod());
-                    technicalService.setDelivered(newTechnicalService.getDelivered());
                     technicalService.setStatus(newTechnicalService.getStatus());
                  return technicalServiceRepository.save(technicalService);
                 }
