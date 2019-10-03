@@ -45,12 +45,13 @@ public class TechnicalServiceImpl implements TechnicalServiceService{
         return technicalServiceRepository.findById(id).map(
                 technicalService -> {
                     technicalService.setEmployee(newTechnicalService.getEmployee());
+                    technicalService.setClient(newTechnicalService.getClient());
+                    technicalService.setMachine(newTechnicalService.getMachine());
                     technicalService.setDescription(newTechnicalService.getDescription());
                     technicalService.setAdmissionDate(newTechnicalService.getAdmissionDate());
                     technicalService.setEgressDate(newTechnicalService.getEgressDate());
                     technicalService.setPrice(newTechnicalService.getPrice());
                     technicalService.setPaymentMethod(newTechnicalService.getPaymentMethod());
-                    technicalService.setDelivered(newTechnicalService.getDelivered());
                     technicalService.setStatus(newTechnicalService.getStatus());
                  return technicalServiceRepository.save(technicalService);
                 }

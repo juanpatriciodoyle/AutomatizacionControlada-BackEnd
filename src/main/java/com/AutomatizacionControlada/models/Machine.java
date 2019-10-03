@@ -16,7 +16,7 @@ public class Machine {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch= FetchType.LAZY)
     private TechnicalService technicalService;
 
     private String internalCode;
