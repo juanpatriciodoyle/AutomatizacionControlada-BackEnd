@@ -58,15 +58,6 @@ public class TechnicalServiceController {
     @PostMapping
     public ResponseEntity<TechnicalService> save(@RequestBody @Valid ReceiveTechnicalService receiveTechnicalService){
 
-//        Client client = clientService.getById(receiveTechnicalService.getClient());
-//        Employee employee = employeeService.getById(receiveTechnicalService.getEmployee());
-//        Machine machine = machineService.getById(receiveTechnicalService.getMachine());
-//        TechnicalService technicalService = new TechnicalService(client,machine,employee, receiveTechnicalService.getDescription(), receiveTechnicalService.getAdmissionDate(), receiveTechnicalService.getEgressDate(),receiveTechnicalService.getPrice(), receiveTechnicalService.getPaymentMethod(), receiveTechnicalService.getStatus());
-//        TechnicalService savedTechnicalService = technicalServiceService.save(technicalService);
-//        URI location = ServletUriComponentsBuilder
-//                .fromCurrentRequest().path("/{id}")
-//                .buildAndExpand(savedTechnicalService.getId()).toUri();
-
         Client client = clientService.getById(receiveTechnicalService.getClient());
         Employee employee = employeeService.getById(receiveTechnicalService.getEmployee());
         Machine machine = machineService.getById(receiveTechnicalService.getMachine());
