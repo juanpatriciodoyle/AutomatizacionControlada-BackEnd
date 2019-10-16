@@ -17,7 +17,7 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch= FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.REMOVE, fetch= FetchType.LAZY)
     private List<Machine> machineList;
 
     private String name;

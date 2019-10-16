@@ -1,6 +1,8 @@
 package com.AutomatizacionControlada.controllers;
 
+import com.AutomatizacionControlada.models.Client;
 import com.AutomatizacionControlada.models.Machine;
+import com.AutomatizacionControlada.services.ClientService;
 import com.AutomatizacionControlada.services.MachineService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +20,13 @@ import java.util.List;
 public class MachineController {
 
     private final MachineService machineService;
+    private final ClientService clientService;
     private final ModelMapper modelMapper;
 
     @Autowired
-    private MachineController(MachineService machineService){
+    private MachineController(MachineService machineService, ClientService clientService){
         this.machineService = machineService;
+        this.clientService = clientService;
         this.modelMapper = new ModelMapper();
     }
 
@@ -31,6 +35,13 @@ public class MachineController {
 
         Machine machine = machineService.getById(id);
         return ResponseEntity.ok(machine);
+
+    }
+
+    @GetMapping("/ByClient/{id}")
+    public ResponseEntity<List<Machine>> getByClientId(@PathVariable Long id){
+
+        return ResponseEntity.ok(clientService.getById(id).getMachineList());
 
     }
 

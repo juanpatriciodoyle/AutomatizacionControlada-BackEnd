@@ -1,7 +1,10 @@
 package com.AutomatizacionControlada.controllers;
 
 import com.AutomatizacionControlada.models.Client;
+import com.AutomatizacionControlada.models.Machine;
+import com.AutomatizacionControlada.models.receiveModels.ReceiveClient;
 import com.AutomatizacionControlada.services.ClientService;
+import com.AutomatizacionControlada.services.MachineService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,11 +22,13 @@ import java.util.List;
 public class ClientController {
 
     private final ClientService clientService;
+    private final MachineService machineService;
     private final ModelMapper modelMapper;
 
     @Autowired
-    private ClientController(ClientService clientService){
+    private ClientController(ClientService clientService, MachineService machineService){
         this.clientService = clientService;
+        this.machineService = machineService;
         this.modelMapper = new ModelMapper();
     }
 
@@ -43,8 +49,11 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity<Client> save(@RequestBody @Valid Client client){
+    public ResponseEntity<Client> save(@RequestBody @Valid ReceiveClient receiveClient){
 
+        List<Machine> machineList = new ArrayList<>(receiveClient.getMachineList());
+
+        Client client = new Client(machineList,receiveClient.getName(),receiveClient.getSurname(),receiveClient.getMail(),receiveClient.getPhone1(),receiveClient.getPhone2());
         Client savedClient = clientService.save(client);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
