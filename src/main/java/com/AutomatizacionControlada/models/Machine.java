@@ -23,12 +23,16 @@ public class Machine {
     private String brand;
     private String model;
     private Boolean boughtHere;
+    private Boolean deleted;
 
-    public Machine(TechnicalService technicalService, String internalCode, String brand, String model, Boolean boughtHere) {
+
+    public Machine(TechnicalService technicalService, String internalCode, String brand, String model, Boolean boughtHere, Boolean deleted) {
         this.technicalService = technicalService;
         this.internalCode = internalCode;
         this.brand = brand;
         this.model = model;
         this.boughtHere = boughtHere;
+        this.deleted = deleted;
+
     }
 }

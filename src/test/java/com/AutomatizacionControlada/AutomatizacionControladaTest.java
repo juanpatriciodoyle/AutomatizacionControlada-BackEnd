@@ -54,7 +54,7 @@ public class AutomatizacionControladaTest {
 	@Test
 	public void createEmployeePrimal() throws Exception {
 
-		Employee employee = new Employee("juan","doyle", Position.BOSS);
+		Employee employee = new Employee("juan","doyle", Position.BOSS, false);
 		employeeRepository.save(employee);
 		employeeRepository.deleteAll();
 	}

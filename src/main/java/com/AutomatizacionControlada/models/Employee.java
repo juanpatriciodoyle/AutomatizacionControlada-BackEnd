@@ -19,11 +19,13 @@ public class Employee {
     private String name;
     private String surname;
     private Position position;
+    private Boolean deleted;
 
-
-    public Employee(String name, String surname, Position position) {
+    public Employee(String name, String surname, Position position,Boolean deleted) {
         this.name = name;
         this.surname = surname;
         this.position = position;
+        this.deleted = deleted;
+
     }
 }

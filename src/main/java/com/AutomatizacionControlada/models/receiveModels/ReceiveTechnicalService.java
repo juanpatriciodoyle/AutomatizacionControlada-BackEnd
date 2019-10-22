@@ -1,5 +1,6 @@
 package com.AutomatizacionControlada.models.receiveModels;
 
+import com.AutomatizacionControlada.util.PaymentMethod;
 import com.AutomatizacionControlada.util.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,8 +21,9 @@ public class ReceiveTechnicalService {
     private Date admissionDate;
     private Date egressDate;
     private Double price;
-    private String paymentMethod;
+    private PaymentMethod paymentMethod;
     private Status status;
+    private Boolean deleted;
 
 }
 

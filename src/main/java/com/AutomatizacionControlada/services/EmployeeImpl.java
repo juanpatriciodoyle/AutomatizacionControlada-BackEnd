@@ -6,6 +6,7 @@ import com.AutomatizacionControlada.models.Employee;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,7 +20,14 @@ public class EmployeeImpl implements EmployeeService{
     @Transactional
     @Override
     public List<Employee> getAll() {
-        return employeeRepository.findAll();
+
+        List<Employee> employeeList = new ArrayList<>();
+        for (Employee employee: employeeRepository.findAll()) {
+            if (!employee.getDeleted()){
+                employeeList.add(employee);
+            }
+        }
+        return employeeList;
     }
 
     @Override
@@ -36,7 +44,8 @@ public class EmployeeImpl implements EmployeeService{
     public void delete(Long id) {
 
         Employee employee = getById(id);
-        employeeRepository.delete(employee);
+        employee.setDeleted(true);
+        employeeRepository.save(employee);
     }
 
     @Override

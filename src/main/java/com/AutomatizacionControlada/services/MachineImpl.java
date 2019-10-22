@@ -6,6 +6,7 @@ import com.AutomatizacionControlada.messages.EntityNotFoundMsg;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,7 +20,14 @@ public class MachineImpl implements MachineService{
     @Transactional
     @Override
     public List<Machine> getAll() {
-        return machineRepository.findAll();
+
+        List<Machine> machineList = new ArrayList<>();
+        for (Machine machine: machineRepository.findAll()) {
+            if (!machine.getDeleted()){
+                machineList.add(machine);
+            }
+        }
+        return machineList;
     }
 
     @Override
@@ -36,7 +44,8 @@ public class MachineImpl implements MachineService{
     public void delete(Long id) {
 
         Machine machine = getById(id);
-        machineRepository.delete(machine);
+        machine.setDeleted(true);
+        machineRepository.save(machine);
     }
 
     @Override

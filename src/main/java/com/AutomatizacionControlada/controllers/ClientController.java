@@ -53,7 +53,7 @@ public class ClientController {
 
         List<Machine> machineList = new ArrayList<>(receiveClient.getMachineList());
 
-        Client client = new Client(machineList,receiveClient.getName(),receiveClient.getSurname(),receiveClient.getMail(),receiveClient.getPhone1(),receiveClient.getPhone2());
+        Client client = new Client(machineList,receiveClient.getName(),receiveClient.getSurname(),receiveClient.getMail(),receiveClient.getPhone1(),receiveClient.getPhone2(), receiveClient.getDeleted());
         Client savedClient = clientService.save(client);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")

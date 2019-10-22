@@ -17,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -50,8 +51,8 @@ public class TechnicalServiceController {
     @GetMapping
     public ResponseEntity<List<TechnicalService>> getAll(){
 
-        List<TechnicalService> technicalServices = technicalServiceService.getAll();
-        return ResponseEntity.ok(technicalServices);
+        List<TechnicalService> technicalServiceList = technicalServiceService.getAll();
+        return ResponseEntity.ok(technicalServiceList);
 
     }
 
@@ -61,7 +62,11 @@ public class TechnicalServiceController {
         Client client = clientService.getById(receiveTechnicalService.getClient());
         Employee employee = employeeService.getById(receiveTechnicalService.getEmployee());
         Machine machine = machineService.getById(receiveTechnicalService.getMachine());
-        TechnicalService technicalService = new TechnicalService(client,machine,employee, receiveTechnicalService.getDescription(), receiveTechnicalService.getAdmissionDate(), receiveTechnicalService.getEgressDate(),receiveTechnicalService.getPrice(), receiveTechnicalService.getPaymentMethod(), receiveTechnicalService.getStatus());
+
+        TechnicalService technicalService = new TechnicalService(client,machine,employee, receiveTechnicalService.getDescription(),
+                receiveTechnicalService.getAdmissionDate(), receiveTechnicalService.getEgressDate(),receiveTechnicalService.getPrice(),
+                receiveTechnicalService.getPaymentMethod(), receiveTechnicalService.getStatus(), receiveTechnicalService.getDeleted());
+
         TechnicalService savedTechnicalService = technicalServiceService.save(technicalService);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")

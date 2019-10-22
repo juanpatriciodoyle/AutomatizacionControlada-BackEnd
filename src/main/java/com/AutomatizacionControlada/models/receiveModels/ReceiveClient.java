@@ -20,5 +20,6 @@ public class ReceiveClient {
     private String mail;
     private String phone1;
     private String phone2;
+    private Boolean deleted;
 }
 

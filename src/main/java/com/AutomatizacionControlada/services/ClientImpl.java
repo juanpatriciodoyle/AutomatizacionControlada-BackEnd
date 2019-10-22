@@ -6,6 +6,7 @@ import com.AutomatizacionControlada.models.Client;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,7 +20,14 @@ public class ClientImpl implements ClientService{
     @Transactional
     @Override
     public List<Client> getAll() {
-        return clientRepository.findAll();
+
+        List<Client> clientList = new ArrayList<>();
+        for (Client client: clientRepository.findAll()) {
+            if (!client.getDeleted()){
+                clientList.add(client);
+            }
+        }
+        return clientList;
     }
 
     @Override
@@ -36,7 +44,8 @@ public class ClientImpl implements ClientService{
     public void delete(Long id) {
 
         Client client = getById(id);
-        clientRepository.delete(client);
+        client.setDeleted(true);
+        clientRepository.save(client);
     }
 
     @Override

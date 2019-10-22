@@ -6,6 +6,7 @@ import com.AutomatizacionControlada.messages.EntityNotFoundMsg;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,7 +20,14 @@ public class TechnicalServiceImpl implements TechnicalServiceService{
     @Transactional
     @Override
     public List<TechnicalService> getAll() {
-        return technicalServiceRepository.findAll();
+
+        List<TechnicalService> technicalServiceList = new ArrayList<>();
+        for (TechnicalService technicalService: technicalServiceRepository.findAll()) {
+            if (!technicalService.getDeleted()){
+                technicalServiceList.add(technicalService);
+            }
+        }
+        return technicalServiceList;
     }
 
     @Override
@@ -36,7 +44,8 @@ public class TechnicalServiceImpl implements TechnicalServiceService{
     public void delete(Long id) {
 
         TechnicalService technicalService = getById(id);
-        technicalServiceRepository.delete(technicalService);
+        technicalService.setDeleted(true);
+        technicalServiceRepository.save(technicalService);
     }
 
     @Override
