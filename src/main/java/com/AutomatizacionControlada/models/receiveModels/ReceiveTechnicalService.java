@@ -23,7 +23,5 @@ public class ReceiveTechnicalService {
     private Double price;
     private PaymentMethod paymentMethod;
     private Status status;
-    private Boolean deleted;
-
 }
 

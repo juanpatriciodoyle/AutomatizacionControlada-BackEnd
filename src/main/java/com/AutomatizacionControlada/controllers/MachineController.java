@@ -56,6 +56,7 @@ public class MachineController {
     @PostMapping
     public ResponseEntity<Machine> save(@RequestBody @Valid Machine machine){
 
+        machine.setDeleted(false);
         Machine savedMachine = machineService.save(machine);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
@@ -67,6 +68,7 @@ public class MachineController {
     @PutMapping("/{id}")
     public ResponseEntity<Machine> update(@PathVariable Long id, @RequestBody Machine machine){
 
+        machine.setDeleted(false);
         Machine updatedMachine = machineService.update(id,machine);
         return ResponseEntity.ok(updatedMachine);
     }

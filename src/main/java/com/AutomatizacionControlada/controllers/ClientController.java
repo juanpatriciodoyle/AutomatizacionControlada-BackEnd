@@ -53,7 +53,7 @@ public class ClientController {
 
         List<Machine> machineList = new ArrayList<>(receiveClient.getMachineList());
 
-        Client client = new Client(machineList,receiveClient.getName(),receiveClient.getSurname(),receiveClient.getMail(),receiveClient.getPhone1(),receiveClient.getPhone2(), receiveClient.getDeleted());
+        Client client = new Client(machineList,receiveClient.getName(),receiveClient.getSurname(),receiveClient.getMail(),receiveClient.getPhone1(),receiveClient.getPhone2(), false);
         Client savedClient = clientService.save(client);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
@@ -65,6 +65,7 @@ public class ClientController {
     @PutMapping("/{id}")
     public ResponseEntity<Client> update(@PathVariable Long id, @RequestBody Client client){
 
+        client.setDeleted(false);
         Client updatedClient = clientService.update(id,client);
         return ResponseEntity.ok(updatedClient);
     }

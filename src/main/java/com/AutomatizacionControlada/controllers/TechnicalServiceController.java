@@ -65,7 +65,7 @@ public class TechnicalServiceController {
 
         TechnicalService technicalService = new TechnicalService(client,machine,employee, receiveTechnicalService.getDescription(),
                 receiveTechnicalService.getAdmissionDate(), receiveTechnicalService.getEgressDate(),receiveTechnicalService.getPrice(),
-                receiveTechnicalService.getPaymentMethod(), receiveTechnicalService.getStatus(), receiveTechnicalService.getDeleted());
+                receiveTechnicalService.getPaymentMethod(), receiveTechnicalService.getStatus(), false);
 
         TechnicalService savedTechnicalService = technicalServiceService.save(technicalService);
         URI location = ServletUriComponentsBuilder
@@ -78,6 +78,7 @@ public class TechnicalServiceController {
     @PutMapping("/{id}")
     public ResponseEntity<TechnicalService> update(@PathVariable Long id, @RequestBody TechnicalService technicalService){
 
+        technicalService.setDeleted(false);
         TechnicalService updatedTechnicalService = technicalServiceService.update(id,technicalService);
         return ResponseEntity.ok(updatedTechnicalService);
     }

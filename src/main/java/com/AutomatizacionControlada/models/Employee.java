@@ -2,6 +2,7 @@ package com.AutomatizacionControlada.models;
 
 import com.AutomatizacionControlada.util.Position;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

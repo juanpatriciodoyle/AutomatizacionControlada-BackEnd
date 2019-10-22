@@ -44,6 +44,7 @@ public class EmployeeController {
     @PostMapping
     public ResponseEntity<Employee> save(@RequestBody @Valid Employee employee){
 
+        employee.setDeleted(false);
         Employee savedEmployee = employeeService.save(employee);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
@@ -55,6 +56,7 @@ public class EmployeeController {
     @PutMapping("/{id}")
     public ResponseEntity<Employee> update(@PathVariable Long id, @RequestBody Employee employee){
 
+        employee.setDeleted(false);
         Employee updatedEmployee = employeeService.update(id,employee);
         return ResponseEntity.ok(updatedEmployee);
     }
