@@ -9,6 +9,8 @@ import java.util.List;
 public interface MachineService {
 
     List<Machine> getAll();
+    List<Machine> getMachinesDeleted();
+    List<Machine> getMachinesFree();
     Machine getById(Long id);
     Machine save(Machine machine);
     void delete(Long id);

@@ -40,6 +40,13 @@ public class ClientController {
 
     }
 
+    @GetMapping("/Deleted")
+    public ResponseEntity<List<Client>> getClientsDeleted(){
+
+        List<Client> clients = clientService.getClientsDeleted();
+        return ResponseEntity.ok(clients);
+    }
+
     @GetMapping
     public ResponseEntity<List<Client>> getAll(){
 

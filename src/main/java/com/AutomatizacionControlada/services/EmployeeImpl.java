@@ -31,6 +31,17 @@ public class EmployeeImpl implements EmployeeService{
     }
 
     @Override
+    public List<Employee> getEmployeesDeleted() {
+        List<Employee> employeeList = new ArrayList<>();
+        for (Employee employee: employeeRepository.findAll()) {
+            if (employee.getDeleted()){
+                employeeList.add(employee);
+            }
+        }
+        return employeeList;
+    }
+
+    @Override
     public Employee getById(Long id) {
         return employeeRepository.findById(id).orElseThrow(EntityNotFoundMsg::new);
     }

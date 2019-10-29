@@ -3,10 +3,12 @@ package com.AutomatizacionControlada.services;
 import com.AutomatizacionControlada.models.TechnicalService;
 import com.AutomatizacionControlada.repository.TechnicalServiceRepository;
 import com.AutomatizacionControlada.messages.EntityNotFoundMsg;
+import com.AutomatizacionControlada.util.Status;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -23,7 +25,29 @@ public class TechnicalServiceImpl implements TechnicalServiceService{
 
         List<TechnicalService> technicalServiceList = new ArrayList<>();
         for (TechnicalService technicalService: technicalServiceRepository.findAll()) {
-            if (!technicalService.getDeleted()){
+            if (!technicalService.getDeleted() && !technicalService.getStatus().equals(Status.DELIVERED)){
+                technicalServiceList.add(technicalService);
+            }
+        }
+        return technicalServiceList;
+    }
+
+    @Override
+    public List<TechnicalService> getTechnicalServiceDeleted() {
+        List<TechnicalService> technicalServiceList = new ArrayList<>();
+        for (TechnicalService technicalService: technicalServiceRepository.findAll()) {
+            if (technicalService.getDeleted()){
+                technicalServiceList.add(technicalService);
+            }
+        }
+        return technicalServiceList;
+    }
+
+    @Override
+    public List<TechnicalService> getTechnicalServiceMarkAsDone() {
+        List<TechnicalService> technicalServiceList = new ArrayList<>();
+        for (TechnicalService technicalService: technicalServiceRepository.findAll()) {
+            if ((!technicalService.getDeleted()) && technicalService.getStatus().equals(Status.DELIVERED)){
                 technicalServiceList.add(technicalService);
             }
         }
@@ -58,11 +82,27 @@ public class TechnicalServiceImpl implements TechnicalServiceService{
                     technicalService.setMachine(newTechnicalService.getMachine());
                     technicalService.setDescription(newTechnicalService.getDescription());
                     technicalService.setAdmissionDate(newTechnicalService.getAdmissionDate());
-                    technicalService.setEgressDate(newTechnicalService.getEgressDate());
                     technicalService.setPrice(newTechnicalService.getPrice());
                     technicalService.setPaymentMethod(newTechnicalService.getPaymentMethod());
                     technicalService.setStatus(newTechnicalService.getStatus());
+                    if (newTechnicalService.getStatus().equals(Status.DELIVERED) && this.getById(id).getEgressDate() == null){
+                        technicalService.setEgressDate(new Date());
+                    }
                  return technicalServiceRepository.save(technicalService);
+                }
+        ).orElseThrow(EntityNotFoundMsg::new);
+    }
+
+    @Override
+    public TechnicalService markAsDone(Long id) {
+
+        return technicalServiceRepository.findById(id).map(
+                technicalService -> {
+                    technicalService.setStatus(Status.DELIVERED);
+                    if (this.getById(id).getEgressDate() == null){
+                        technicalService.setEgressDate(new Date());
+                    }
+                    return technicalServiceRepository.save(technicalService);
                 }
         ).orElseThrow(EntityNotFoundMsg::new);
     }

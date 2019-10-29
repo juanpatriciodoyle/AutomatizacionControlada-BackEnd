@@ -33,12 +33,18 @@ public class EmployeeController {
 
     }
 
+    @GetMapping("/Deleted")
+    public ResponseEntity<List<Employee>> getEmployeesDeleted(){
+
+        List<Employee> employees = employeeService.getEmployeesDeleted();
+        return ResponseEntity.ok(employees);
+    }
+
     @GetMapping
     public ResponseEntity<List<Employee>> getAll(){
 
         List<Employee> employees = employeeService.getAll();
         return ResponseEntity.ok(employees);
-
     }
 
     @PostMapping

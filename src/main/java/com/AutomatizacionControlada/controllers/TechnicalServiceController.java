@@ -17,7 +17,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -56,6 +55,20 @@ public class TechnicalServiceController {
 
     }
 
+    @GetMapping("/Deleted")
+    public ResponseEntity<List<TechnicalService>> getTechnicalServiceDeleted(){
+
+        List<TechnicalService> machines = technicalServiceService.getTechnicalServiceDeleted();
+        return ResponseEntity.ok(machines);
+    }
+
+    @GetMapping("/MarkAsDone")
+    public ResponseEntity<List<TechnicalService>> getTechnicalServiceMarkAsDone(){
+
+        List<TechnicalService> machines = technicalServiceService.getTechnicalServiceMarkAsDone();
+        return ResponseEntity.ok(machines);
+    }
+
     @PostMapping
     public ResponseEntity<TechnicalService> save(@RequestBody @Valid ReceiveTechnicalService receiveTechnicalService){
 
@@ -80,6 +93,13 @@ public class TechnicalServiceController {
 
         technicalService.setDeleted(false);
         TechnicalService updatedTechnicalService = technicalServiceService.update(id,technicalService);
+        return ResponseEntity.ok(updatedTechnicalService);
+    }
+
+    @PutMapping("/MarkAsDone/{id}")
+    public ResponseEntity<TechnicalService> markAsDone(@PathVariable Long id){
+
+        TechnicalService updatedTechnicalService = technicalServiceService.markAsDone(id);
         return ResponseEntity.ok(updatedTechnicalService);
     }
 

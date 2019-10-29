@@ -53,6 +53,20 @@ public class MachineController {
 
     }
 
+    @GetMapping("/Deleted")
+    public ResponseEntity<List<Machine>> getMachinesDeleted(){
+
+        List<Machine> machines = machineService.getMachinesDeleted();
+        return ResponseEntity.ok(machines);
+    }
+
+    @GetMapping("/Free")
+    public ResponseEntity<List<Machine>> getMachinesFree(){
+
+        List<Machine> machines = machineService.getMachinesFree();
+        return ResponseEntity.ok(machines);
+    }
+
     @PostMapping
     public ResponseEntity<Machine> save(@RequestBody @Valid Machine machine){
 
